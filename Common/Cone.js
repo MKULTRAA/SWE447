@@ -84,6 +84,7 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
  
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
         
+        gl.drawArrays(gl.POINTS,start, count);
 
         // Draw the cone's base
         //
@@ -94,7 +95,7 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
         var offset = this.indices.count * 2 /* sizeof(UNSIGNED_INT) */;
         gl.drawElements( gl.POINTS, this.indices.count, gl.UNSIGNED_SHORT, offset );
         
-        gl.drawArrays(gl.POINTS,start, 10);
+        
         
     }
 };
