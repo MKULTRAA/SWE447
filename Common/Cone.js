@@ -28,11 +28,13 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
     //   numComponents field.
     //
     this.positions = { numComponents : 3 };
+    this.count = 4;
     
     // Initialize temporary arrays for the Cone's indices and vertex positions
     //
     var positions = [ 0.0, 0.0, 0.0 ];
     var indices = [ 0 ];
+    
     
     for ( var i = 0; i < n; ++i ) {
         theta = i * dTheta;
@@ -76,6 +78,11 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
     gl.enableVertexAttribArray( this.positions.attributeLoc );
 
     this.render = function () {
+       var start = 0;
+       var count = this.count;
+        
+        gl.drawArrays(gl.POINTS, start, count);
+        
         gl.useProgram( this.program );
 
         gl.bindBuffer( gl.ARRAY_BUFFER, this.positions.buffer );
@@ -84,13 +91,13 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
  
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
         
-       
+        
 
         // Draw the cone's base
         //
         gl.drawElements( gl.POINTS, this.indices.count, gl.UNSIGNED_SHORT, 0 );
         
-        gl.drawArrays(gl.POINTS,start, count);
+        
 
         // Draw the cone's top
         //
