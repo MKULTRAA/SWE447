@@ -82,7 +82,8 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
         gl.vertexAttribPointer( this.positions.attributeLoc, this.positions.numComponents,
             gl.FLOAT, gl.FALSE, 0, 0 );
  
-        gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
+        //gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
+        gl.bindBuffer( gl.POINTS, this.indices.buffer );
 
         // Draw the cone's base
         //
