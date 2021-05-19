@@ -86,7 +86,7 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
 
         // Draw the cone's base
         //
-        gl.drawElements( gl.POINTS, this.indices.count, gl.UNSIGNED_SHORT, 0 );
+        //gl.drawElements( gl.POINTS, this.indices.count, gl.UNSIGNED_SHORT, 0 );
 
         // Draw the cone's top
         //
