@@ -24,4 +24,5 @@ function render() {
     cone.render();
 }
 
+
 window.onload = init;
