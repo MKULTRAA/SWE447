@@ -2,7 +2,11 @@ var gl = null;
 var cone = null;
 
 function init() {
+<<<<<<< Updated upstream
    
+=======
+
+>>>>>>> Stashed changes
     var canvas = document.getElementById("webgl-canvas");
 
     gl = WebGLUtils.setupWebGL(canvas);
@@ -14,8 +18,8 @@ function init() {
 
 
     gl.clearColor(1.0, 0.0, 1.0, 1.0);
-    
-    cone = new Cone(gl, 10, "Cone-vertex-shader","Cone-fragment-shader");
+
+    cone = new Cone(gl, 10, "Cone-vertex-shader", "Cone-fragment-shader");
 
     render();
 }
