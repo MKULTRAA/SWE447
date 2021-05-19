@@ -93,6 +93,6 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
         var offset = this.indices.count * 2 /* sizeof(UNSIGNED_INT) */;
         gl.drawElements( gl.POINTS, this.indices.count, gl.UNSIGNED_SHORT, offset );
         
-        gl.drawArrays(gl.POINTS,this.indices.count, gl.UNSIGNED_SHORT, 0);
+        
     }
 };
