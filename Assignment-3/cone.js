@@ -1,7 +1,8 @@
 var gl = null;
 var cone = null;
-
+cone = new Cone(gl, n);
 function init() {
+    cone = new Cone(gl, n);
     var canvas = document.getElementById("webgl-canvas");
 
     gl = WebGLUtils.setupWebGL(canvas);
@@ -11,7 +12,11 @@ function init() {
         return;
     }
 
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
 
     gl.clearColor(1.0, 0.0, 1.0, 1.0);
     
