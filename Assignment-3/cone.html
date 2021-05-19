@@ -3,13 +3,36 @@
 
 <head>
   <script src="../Common/webgl-utils.js"></script>
+  <script src="../Common/Cone.js"></script>
+  <script src=" cone.js"></script>
+  <script id="Cone-vertex-shader" type="x-shader/x-vertex">
+  attribute vec4 vPosition;
+
+  void main()
+  {
+    gl_Position = vPosition;
+
+  }
+  
+  </script>
+
+  <script id="Cone-fragment-shader" type="x-shader/x-vertex">
+  void main()
+  {
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+  }
+
+  </script>
+
+
 
 </head>
 
 <body>
   <canvas id="webgl-canvas" width="512" height="512" style="background-color: #ff99cc"></canvas>
-  <script src="clear.js></script>
-  <script src="cone.js"></script> 
+
+
 
 </body>
+
 </html>
