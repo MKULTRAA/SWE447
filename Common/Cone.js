@@ -1,6 +1,6 @@
 const DefaultNumSides = 8;
 
-function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
+function Cone( gl, gl.POINTS, numSides, vertexShaderId, fragmentShaderId ) {
 
     // Initialize the shader pipeline for this object using either shader ids
     //   declared in the application's HTML header, or use the default names.
@@ -82,8 +82,8 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
         gl.vertexAttribPointer( this.positions.attributeLoc, this.positions.numComponents,
             gl.FLOAT, gl.FALSE, 0, 0 );
  
-        //gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
-        gl.bindBuffer( gl.POINTS, this.indices.buffer );
+        gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
+        
 
         // Draw the cone's base
         //
