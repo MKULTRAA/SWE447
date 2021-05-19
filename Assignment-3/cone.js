@@ -2,11 +2,7 @@ var gl = null;
 var cone = null;
 
 function init() {
-<<<<<<< Updated upstream
-   
-=======
 
->>>>>>> Stashed changes
     var canvas = document.getElementById("webgl-canvas");
 
     gl = WebGLUtils.setupWebGL(canvas);
