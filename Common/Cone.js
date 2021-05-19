@@ -84,11 +84,13 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
  
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
         
-        gl.drawArrays(gl.POINTS,start, count);
+       
 
         // Draw the cone's base
         //
         gl.drawElements( gl.POINTS, this.indices.count, gl.UNSIGNED_SHORT, 0 );
+        
+        gl.drawArrays(gl.POINTS,start, count);
 
         // Draw the cone's top
         //
