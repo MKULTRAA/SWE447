@@ -28,7 +28,7 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
     //   numComponents field.
     //
     this.positions = { numComponents : 3 };
-    this.count = 4;
+    
     
     // Initialize temporary arrays for the Cone's indices and vertex positions
     //
@@ -78,11 +78,7 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
     gl.enableVertexAttribArray( this.positions.attributeLoc );
 
     this.render = function () {
-       var start = 0;
-       var count = this.count;
-        
-        gl.drawArrays(gl.POINTS, start, count);
-        
+       
         gl.useProgram( this.program );
 
         gl.bindBuffer( gl.ARRAY_BUFFER, this.positions.buffer );
