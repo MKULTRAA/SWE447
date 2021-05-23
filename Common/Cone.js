@@ -43,7 +43,7 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
         indices.push(n - i);
     }
 
-    positions.push( 0.0, 0.0, 0.0 );
+    positions.push( 0.0, 0.0, 1.0 );
     
     // Close the triangle fan by repeating the first (non-center) point.
     //
