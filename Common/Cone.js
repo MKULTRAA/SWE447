@@ -32,7 +32,7 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
     
     // Initialize temporary arrays for the Cone's indices and vertex positions
     //
-    var positions = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  ];
+    var positions = [ 0.0, 0.0, 0.0, 0.0, 0.0];
     var indices = [ 0 ];
     
     
