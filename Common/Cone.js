@@ -27,7 +27,7 @@ function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
     //   Here, we both create the positions object, as well as initialize its
     //   numComponents field.
     //
-    this.positions = { numComponents : 2 };
+    this.positions = { numComponents : 3 };
     
     
     // Initialize temporary arrays for the Cone's indices and vertex positions
