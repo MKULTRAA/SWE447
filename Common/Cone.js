@@ -1,4 +1,4 @@
-const DefaultNumSides = 8;
+const DefaultNumSides = 9;
 
 function Cone( gl, numSides, vertexShaderId, fragmentShaderId ) {
 
