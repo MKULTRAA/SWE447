@@ -64,22 +64,26 @@ function Cube( vertexShaderId, fragmentShaderId ) {
             */
             
             
-             // Add your list of triangle indices here
-            //front face
-            0, 1, 3, 
-            3, 1, 2, 
-            //bottom face
-            1, 2, 5,
-            5, 2, 6, 
-            //back face
-            4, 5, 6, 
-            4, 6, 7, 
-            //left face
-            2, 3, 6,
-            6, 3, 7,
-            //right face
-            4, 5, 0,
-            5, 1, 0
+             // Top
+            0, 1, 3,
+            0, 3, 2,
+            3, 1, 4,
+            3, 4, 2,
+            // Bottom
+            0, 5, 7,
+            0, 7, 6,
+            7, 5, 8,
+            7, 8, 6,
+            // Left
+            0, 9, 11,
+            0, 11, 10,
+            11, 9, 12,
+            11, 12, 10,
+            // Right
+            0, 13, 15,
+            0, 15, 14,
+            15, 13, 16,
+            15, 16, 14
         ])
     };
     this.indices.count = this.indices.values.length;
