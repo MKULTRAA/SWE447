@@ -30,7 +30,7 @@ function Cube( vertexShaderId, fragmentShaderId ) {
             -1.0,  1.0, -1.0
             */
            // Add your list vertex positions here
-          
+          /*
             -0.5, -0.5,  0.5,
             0.5, -0.5,  0.5,
             0.5,  0.5,  0.5,
@@ -39,6 +39,16 @@ function Cube( vertexShaderId, fragmentShaderId ) {
             0.5, -0.5, -0.5,
             0.5, 0.5, -0.5,
            -0.5,  0.5, -0.5
+           */
+            
+           -0.3, -0.3,  0.3,
+            0.3, -0.3,  0.3,
+            0.3,  0.3,  0.3,
+           -0.3,  0.3,  0.3,
+           -0.3, -0.3, -0.3,
+            0.3, -0.3, -0.3,
+            0.3, 0.3, -0.3,
+           -0.3,  0.3, -0.3
            
             
             
