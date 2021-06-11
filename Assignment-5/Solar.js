@@ -185,7 +185,7 @@ function render() {
   planet.render();
   ms.pop();
   
-  name = "Moon ";
+  name = "Moon";
   planet = Planets[name];
   data = SolarSystem[name];
   
