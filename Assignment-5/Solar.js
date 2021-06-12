@@ -291,7 +291,7 @@ function render() {
   planet.render();
   ms.pop();
 
-  name = "Pluto ";
+  name = "Pluto";
   planet = Planets[name];
   data = SolarSystem[name];
   
