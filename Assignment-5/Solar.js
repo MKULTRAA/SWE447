@@ -177,8 +177,8 @@ function render() {
   data = SolarSystem[name];
   
    ms.push();
-  ms.translate(Earth.distance, 0, 0);
-  ms.scale(Earth.radius);
+  ms.translate(data.distance, 0, 0);
+  ms.scale(data.radius);
   
   
   gl.useProgram(planet.program);
