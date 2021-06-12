@@ -177,7 +177,10 @@ function render() {
   data = SolarSystem[name];
   
    ms.push();
-  ms.scale(data.radius);
+  ms.translate(Earth.distance, 0, 0);
+  ms.scale(Earth.radius);
+  
+  
   gl.useProgram(planet.program);
   gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
   gl.uniformMatrix4fv(planet.uniforms.P, false, flatten(P));
