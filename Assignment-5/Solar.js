@@ -148,7 +148,7 @@ function render() {
   //
   //  Add your code for more planets here!
 
- 
+  
   name = "Mercury";
   planet = Planets[name];
   data = SolarSystem[name];
@@ -292,7 +292,7 @@ function render() {
   planet.render();
   ms.pop();
 
-  
+ 
   name = "Uranus";
   planet = Planets[name];
   data = SolarSystem[name];
