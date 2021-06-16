@@ -13,8 +13,8 @@ function init() {
     return;
   }
 
- // gl.clearColor( 0.8, 0.8, 0.8, 1.0 );
-  //gl.enable( gl.DEPTH_TEST );
+ gl.clearColor( 0.8, 0.8, 0.8, 1.0 );
+ gl.enable( gl.DEPTH_TEST );
   
 
 
