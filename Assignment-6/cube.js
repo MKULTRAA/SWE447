@@ -16,7 +16,7 @@ function init() {
   gl.clearColor( 0.8, 0.8, 0.8, 1.0 );
   gl.enable( gl.DEPTH_TEST );
   
-  // Create a texture.
+ // Create a texture.
   var texture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, texture);
   // Fill the texture with a 1x1 blue pixel.
@@ -24,7 +24,7 @@ function init() {
                 new Uint8Array([0, 0, 255, 255]));
   // Asynchronously load an image
   var image = new Image();
-  image.src = "https://webglfundamentals.org/webgl/resources/keyboard.jpg";
+  image.src = "https://webglfundamentals.org/webgl/resources/noodles.jpg";
   image.addEventListener('load', function() {
     // Now that the image has loaded make copy it to the texture.
     gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -41,6 +41,222 @@ function init() {
        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     }
   });
+
+  function isPowerOf2(value) {
+    return (value & (value - 1)) === 0;
+  }
+
+  function radToDeg(r) {
+    return r * 180 / Math.PI;
+  }
+
+  function degToRad(d) {
+    return d * Math.PI / 180;
+  }
+
+  var fieldOfViewRadians = degToRad(60);
+  var modelXRotationRadians = degToRad(0);
+  var modelYRotationRadians = degToRad(0);
+
+  // Get the starting time.
+  var then = 0;
+
+  requestAnimationFrame(drawScene);
+
+  // Draw the scene.
+  function drawScene(time) {
+    // convert to seconds
+    time *= 0.001;
+    // Subtract the previous time from the current time
+    var deltaTime = time - then;
+    // Remember the current time for the next frame.
+    then = time;
+
+    webglUtils.resizeCanvasToDisplaySize(gl.canvas);
+
+    // Tell WebGL how to convert from clip space to pixels
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+    gl.enable(gl.CULL_FACE);
+    gl.enable(gl.DEPTH_TEST);
+
+    // Animate the rotation
+    modelYRotationRadians += -0.7 * deltaTime;
+    modelXRotationRadians += -0.4 * deltaTime;
+
+    // Clear the canvas AND the depth buffer.
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+    // Tell it to use our program (pair of shaders)
+    gl.useProgram(program);
+
+    // Turn on the position attribute
+    gl.enableVertexAttribArray(positionLocation);
+
+    // Bind the position buffer.
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
+    // Tell the position attribute how to get data out of positionBuffer (ARRAY_BUFFER)
+    var size = 3;          // 3 components per iteration
+    var type = gl.FLOAT;   // the data is 32bit floats
+    var normalize = false; // don't normalize the data
+    var stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next position
+    var offset = 0;        // start at the beginning of the buffer
+    gl.vertexAttribPointer(
+        positionLocation, size, type, normalize, stride, offset);
+
+    // Turn on the texcoord attribute
+    gl.enableVertexAttribArray(texcoordLocation);
+
+    // bind the texcoord buffer.
+    gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer);
+
+    // Tell the texcoord attribute how to get data out of texcoordBuffer (ARRAY_BUFFER)
+    var size = 2;          // 2 components per iteration
+    var type = gl.FLOAT;   // the data is 32bit floats
+    var normalize = false; // don't normalize the data
+    var stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next position
+    var offset = 0;        // start at the beginning of the buffer
+    gl.vertexAttribPointer(
+        texcoordLocation, size, type, normalize, stride, offset);
+
+    // Compute the projection matrix
+    var aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
+    var projectionMatrix =
+        m4.perspective(fieldOfViewRadians, aspect, 1, 2000);
+
+    var cameraPosition = [0, 0, 2];
+    var up = [0, 1, 0];
+    var target = [0, 0, 0];
+
+    // Compute the camera's matrix using look at.
+    var cameraMatrix = m4.lookAt(cameraPosition, target, up);
+
+    // Make a view matrix from the camera matrix.
+    var viewMatrix = m4.inverse(cameraMatrix);
+
+    var viewProjectionMatrix = m4.multiply(projectionMatrix, viewMatrix);
+
+    var matrix = m4.xRotate(viewProjectionMatrix, modelXRotationRadians);
+    matrix = m4.yRotate(matrix, modelYRotationRadians);
+
+    // Set the matrix.
+    gl.uniformMatrix4fv(matrixLocation, false, matrix);
+
+    // Tell the shader to use texture unit 0 for u_texture
+    gl.uniform1i(textureLocation, 0);
+
+    // Draw the geometry.
+    gl.drawArrays(gl.TRIANGLES, 0, 6 * 6);
+
+    requestAnimationFrame(drawScene);
+  }
+}
+
+// Fill the buffer with the values that define a cube.
+function setGeometry(gl) {
+  var positions = new Float32Array(
+    [
+    -0.5, -0.5,  -0.5,
+    -0.5,  0.5,  -0.5,
+     0.5, -0.5,  -0.5,
+    -0.5,  0.5,  -0.5,
+     0.5,  0.5,  -0.5,
+     0.5, -0.5,  -0.5,
+
+    -0.5, -0.5,   0.5,
+     0.5, -0.5,   0.5,
+    -0.5,  0.5,   0.5,
+    -0.5,  0.5,   0.5,
+     0.5, -0.5,   0.5,
+     0.5,  0.5,   0.5,
+
+    -0.5,   0.5, -0.5,
+    -0.5,   0.5,  0.5,
+     0.5,   0.5, -0.5,
+    -0.5,   0.5,  0.5,
+     0.5,   0.5,  0.5,
+     0.5,   0.5, -0.5,
+
+    -0.5,  -0.5, -0.5,
+     0.5,  -0.5, -0.5,
+    -0.5,  -0.5,  0.5,
+    -0.5,  -0.5,  0.5,
+     0.5,  -0.5, -0.5,
+     0.5,  -0.5,  0.5,
+
+    -0.5,  -0.5, -0.5,
+    -0.5,  -0.5,  0.5,
+    -0.5,   0.5, -0.5,
+    -0.5,  -0.5,  0.5,
+    -0.5,   0.5,  0.5,
+    -0.5,   0.5, -0.5,
+
+     0.5,  -0.5, -0.5,
+     0.5,   0.5, -0.5,
+     0.5,  -0.5,  0.5,
+     0.5,  -0.5,  0.5,
+     0.5,   0.5, -0.5,
+     0.5,   0.5,  0.5,
+
+    ]);
+  gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+}
+
+// Fill the buffer with texture coordinates the cube.
+function setTexcoords(gl) {
+  gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array(
+        [
+        // select the top left image
+        0   , 0  ,
+        0   , 0.5,
+        0.25, 0  ,
+        0   , 0.5,
+        0.25, 0.5,
+        0.25, 0  ,
+        // select the top middle image
+        0.25, 0  ,
+        0.5 , 0  ,
+        0.25, 0.5,
+        0.25, 0.5,
+        0.5 , 0  ,
+        0.5 , 0.5,
+        // select to top right image
+        0.5 , 0  ,
+        0.5 , 0.5,
+        0.75, 0  ,
+        0.5 , 0.5,
+        0.75, 0.5,
+        0.75, 0  ,
+        // select the bottom left image
+        0   , 0.5,
+        0.25, 0.5,
+        0   , 1  ,
+        0   , 1  ,
+        0.25, 0.5,
+        0.25, 1  ,
+        // select the bottom middle image
+        0.25, 0.5,
+        0.25, 1  ,
+        0.5 , 0.5,
+        0.25, 1  ,
+        0.5 , 1  ,
+        0.5 , 0.5,
+        // select the bottom right image
+        0.5 , 0.5,
+        0.75, 0.5,
+        0.5 , 1  ,
+        0.5 , 1  ,
+        0.75, 0.5,
+        0.75, 1  ,
+
+      ]),
+      gl.STATIC_DRAW);
+}
+
+main();
 
   cube = new Cube();
 
