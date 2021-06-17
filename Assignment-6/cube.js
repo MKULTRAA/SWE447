@@ -21,7 +21,7 @@ function init() {
 
   render();
   }
-  
+ /* 
 function initTexture () {
   texture = gl.createTexture();
   texImage = new Image();
@@ -43,7 +43,7 @@ gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
  gl.bindTexture(gl.TEXTURE_2D, null);
 }
 
-
+*/
 
 
                          
