@@ -11,33 +11,23 @@
 <script src="cube.js"></script>
 
 <script id="Cube-vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
 
-attribute  vec4 vPosition;
-attribute vec4 vColor;
-attribute vec2 vTexCoord;
-
-varying vec4 fColor;
-varying vec2 fTexCoord;
+uniform mat4 MV;
+varying vec2 v_texcoord;
 
 void main()
 {
- fColor = vColor;
- fTexCoord = vTexCoord;
- gl_Position = vPosition;
+    gl_PointSize = 5.0;
+    gl_Position = MV * vPosition;
 }
-
 </script>
 
 <script id="Cube-fragment-shader" type="x-shader/x-fragment">
-varying vec4 fColor;
-varying vec2 fTexCoord;
-uniform sampler2D tex;
 void main()
 {
- gl_FragColor = texture(tex,
-   fTexCoord); 
+    gl_FragColor = vec4(1.0, 0.0, gl_FrontFacing ? 1.0 : 0.0, 1.0);
 }
-
 </script>
 </head>
 
