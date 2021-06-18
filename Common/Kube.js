@@ -128,11 +128,7 @@ function Kube( vertexShaderId, fragmentShaderId ) {
         ])
     };
     this.indices.count = this.indices.values.length;
-	function requestCORSIfNotSameOrigin(img, url) {
-    if ((new URL(url, window.location.href)).origin !== window.location.origin) {
-      img.crossOrigin = "";
-    }
-  }
+
 
 	function loadTexture(image, texture) {
 		gl.bindTexture(gl.TEXTURE_2D, texture);
