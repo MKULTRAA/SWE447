@@ -19,7 +19,7 @@ function init() {
  gl.depthFunc(gl.LEQUAL);
   
 
- cube = new Kube(0, "Cube-vertex-shader", "Cube=fragment-shader");
+ cube = new Kube(0, "Cube-vertex-shader", "Cube-fragment-shader");
 
   render();
 }
