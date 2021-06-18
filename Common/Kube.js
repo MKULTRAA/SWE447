@@ -191,6 +191,6 @@ function Kube (vertexShaderId, fragmentShaderId ){
         gl.drawElements(gl.TRANGLES, this.indices.count, gl.UNSIGNED_SHORT, 0);
 
 
-    
+    }
     }
 };
