@@ -141,15 +141,25 @@ function Kube( vertexShaderId, fragmentShaderId ) {
 		gl.bindTexture(gl.TEXTURE_2D, null);
 	}
 
-	function initTexture () {
-		texture = gl.createTexture();
-		texImage = new Image();
-		texImage.onload = function () {
-			loadTexture(texImage, texture);
-		};
-		
-		texImage.src = "image.jpg";
-	}
+	function requestCORSIfNotSameOrigin(img, url) {
+        if ((new URL(url, window.location.href)).origin !== window.location.origin) {
+          img.crossOrigin = "";
+        }
+    }
+
+    function initTexture(){
+        texture = gl.createTexture();
+        texImage = new Image();
+        texImage.onload = function() {
+
+            LoadingTexture(texImage, texture);
+        };
+        texImage.src = "cubetexture.png";
+        requestCORSIfNotSameOrigin(texImage, texImage.src);
+
+        texImage.src = "https://webglfundamentals.org/webgl/resources/noodles.jpg";
+    }
+    initTexture();
     initTexture();
 	
 	this.positions.buffer = gl.createBuffer();
