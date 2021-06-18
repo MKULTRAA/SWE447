@@ -152,7 +152,7 @@ function Kube( vertexShaderId, fragmentShaderId ) {
         texImage = new Image();
         texImage.onload = function() {
 
-            loadTexture(texImage, texture);
+            //LoadingTexture(texImage, texture);
         };
         texImage.src = "cubetexture.png";
         requestCORSIfNotSameOrigin(texImage, texImage.src);
