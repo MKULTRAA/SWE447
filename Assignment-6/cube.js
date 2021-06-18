@@ -33,7 +33,7 @@ function render() {
 
   cube.MV = rotate( angle, [1, 1, 0] );
 
-  render();
+  cube.render();
 
   requestAnimationFrame( render ); // schedule another call to render()
 }
