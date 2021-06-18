@@ -1,9 +1,7 @@
 
 function Kube( vertexShaderId, fragmentShaderId ) {
 
-    // Initialize the shader pipeline for this object using either shader ids
-    //   declared in the application's HTML header, or use the default names.
-    //
+   
     var vertShdr = vertexShaderId || "Cube-vertex-shader";
     var fragShdr = fragmentShaderId || "Cube-fragment-shader";
 
@@ -18,43 +16,48 @@ function Kube( vertexShaderId, fragmentShaderId ) {
    	
 	this.positions = {
 		values : new Float32Array([
-           // Add your list vertex positions here 
-			// Front face
+          
+			// Front 
 			-0.5, -0.5, +0.5,
 			-0.5, +0.5, +0.5,
 			+0.5, -0.5, +0.5,
 			+0.5, +0.5, +0.5,
 			+0.5, -0.5, +0.5,
 			-0.5, +0.5, +0.5,
-			// Back face
+			
+			// Back
 			-0.5, -0.5, -0.5,
 			+0.5, -0.5, -0.5,
 			-0.5, +0.5, -0.5,
 			+0.5, +0.5, -0.5,
 			-0.5, +0.5, -0.5,
 			+0.5, -0.5, -0.5,
-			// Top face
+			
+			// Top 
 			-0.5, +0.5, -0.5,
 			+0.5, +0.5, -0.5,
 			-0.5, +0.5, +0.5,
 			+0.5, +0.5, +0.5,
 			-0.5, +0.5, +0.5,
-			+0.5, +0.5, -0.5,		
-			// Bottom face
+			+0.5, +0.5, -0.5,
+			
+			// Bottom 
 			-0.5, -0.5, -0.5,
 			-0.5, -0.5, +0.5,
 			+0.5, -0.5, -0.5,
 			+0.5, -0.5, +0.5,
 			+0.5, -0.5, -0.5,
 			-0.5, -0.5, +0.5,
-			// Right face
+			
+			// Right
 			+0.5, -0.5, -0.5,
 			+0.5, -0.5, +0.5,
 			+0.5, +0.5, -0.5,
 			+0.5, +0.5, +0.5,
 			+0.5, +0.5, -0.5,
-			+0.5, -0.5, +0.5,		
-			// Left face
+			+0.5, -0.5, +0.5,
+			
+			// Left 
 			-0.5, -0.5, -0.5,
 			-0.5, +0.5, -0.5,
 			-0.5, -0.5, +0.5,
@@ -114,13 +117,14 @@ function Kube( vertexShaderId, fragmentShaderId ) {
     
     this.indices = { 
         values : new Uint16Array([
-            // Add your list of triangle indices here
-			 0,  1,  2,  3,  4,  5,   // front
-			 6,  7,  8,  9, 10, 11,   // back
-			12, 13, 14, 15, 16, 17,   // top
-			18, 19, 20, 21, 22, 23,   // bottom
-			24, 25, 26, 27, 28, 29,   // right
-			30, 31, 32, 33, 34, 35,   // left
+           
+		
+			 0,  1,  2,  3,  4,  5,  
+			 6,  7,  8,  9, 10, 11,   
+			12, 13, 14, 15, 16, 17,  
+			18, 19, 20, 21, 22, 23,   
+			24, 25, 26, 27, 28, 29,   
+			30, 31, 32, 33, 34, 35, 
         ])
     };
     this.indices.count = this.indices.values.length;
@@ -188,7 +192,7 @@ function Kube( vertexShaderId, fragmentShaderId ) {
 		gl.bindTexture(gl.TEXTURE_2D, texture);
 		gl.uniform1i(texLoc, 0);
 
-        // Draw the cube's base
+       
 		gl.drawElements(gl.TRIANGLES, this.indices.count, gl.UNSIGNED_SHORT, 0);
     }
 };
