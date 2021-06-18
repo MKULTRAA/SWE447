@@ -152,12 +152,12 @@ function Kube( vertexShaderId, fragmentShaderId ) {
         texImage = new Image();
         texImage.onload = function() {
 
-            //LoadingTexture(texImage, texture);
+            LoadingTexture(texImage, texture);
         };
         texImage.src = "cubetexture.png";
         requestCORSIfNotSameOrigin(texImage, texImage.src);
 
-        texImage.src = "https://webglfundamentals.org/webgl/resources/noodles.jpg";
+        texImage.src = "https://i.imgur.com/w9NORXB.jpg";
     }
     initTexture();
     initTexture();
