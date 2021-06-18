@@ -146,11 +146,7 @@ function Kube( vertexShaderId, fragmentShaderId ) {
 		texImage.onload = function () {
 			loadTexture(texImage, texture);
 		};
-		 const img = new Image();
-		img.crossOrigin = "anonymous";
-		img.src = url;
-		img.width = 224;
-		img.height = 224;
+		
 		texImage.src = "https://i.imgur.com/w9NORXB.jpg";
 	}
     initTexture();
