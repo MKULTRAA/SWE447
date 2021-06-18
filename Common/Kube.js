@@ -147,7 +147,7 @@ function Kube( vertexShaderId, fragmentShaderId ) {
 			loadTexture(texImage, texture);
 		};
 		 
-		texImage.src = "image.jpg";
+		texImage.src = "https://i.imgur.com/w9NORXB.jpg";
 	}
     initTexture();
 	
