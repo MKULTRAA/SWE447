@@ -1,0 +1,300 @@
+<html>
+
+<head>
+    <title>Three.Js Sample</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        ;
+    </style>
+</head>
+
+<body>
+    <script src="threejsscripts/three.js"></script>
+    <script src="threejsscripts/OrbitControls.js"></script>
+    <script src="threejsscripts/OBJLoader.js"></script>
+    <script src="threejsscripts/MTLLoader.js"></script>
+
+
+
+    <audio loop id="music" preload="auto" style="display: none">
+        <source src="Castawayslofi.ogg" type="audio/ogg">
+    </audio>
+
+    <script>
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000000);
+
+        //audio
+        var listener = new THREE.AudioListener();
+        camera.add(listener);
+
+        var sound = new THREE.Audio(listener);
+        var loader = new THREE.AudioLoader().load('Castawayslofi.ogg', (hasil) => {
+            sound.setBuffer(hasil);
+            sound.play();
+        });
+
+
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        //resizing
+        window.addEventListener('resize', function () {
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        });
+
+        //controls
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+        //creating the shape
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+
+        //create a material, color or image texture
+        // var material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: false });
+        //var cube = new THREE.Mesh(geometry, material);
+        //scene.add(cube);
+
+        camera.position.z = 700;
+
+
+        //lighting
+        var ambientLight = new THREE.AmbientLight(0x0000FF, 1.0)
+
+
+        var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30,100%,75%)'), 1.0);
+        keyLight.position.set(-100, 0, 100);
+
+        var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(250,100%,75%)'), 0.75);
+        fillLight.position.set(100, 0, 100);
+
+        var backLight = new THREE.DirectionalLight(0xffffff, 0.70);
+        backLight.position.set(100, 0, -100).normalize();
+
+        var backLight2 = new THREE.DirectionalLight(0xffffff, 0.70);
+        backLight.position.set(100, 0, -100).normalize();
+
+        var hemisphereLight = new THREE.HemisphereLight(0xffffff, 0);
+
+        // scene.add(ambientLight)
+        //ambientLight.position.z -= 1000;
+        //scene.add(keyLight);
+        //scene.add(backLight);
+        //backLight.position.x -= 60;
+
+        scene.add(hemisphereLight);
+
+        //scene.add(backLight2);
+
+        scene.add(fillLight);
+
+
+        //Cat in Spaceship Model
+        //Loading Material- MTL
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('models/fishie/FishCatShip.mtl', function (materials) {
+            materials.preload();
+
+            //Loading 3D Models - OBJ
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.load('models/fishie/FishCatShip.obj', function (object) {
+                object.position.y -= 60;
+                scene.add(object);
+            });
+        });
+
+        //Catstaway 3D Model Text
+        //Loading Material- MTL
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('models/text/text.mtl', function (materials) {
+            materials.preload();
+
+            //Loading 3D Models - OBJ
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.load('models/text/text.obj', function (object) {
+                object.position.y -= 60;
+                scene.add(object);
+            });
+        });
+
+
+
+        //Earth- Model
+        //Loading Material- MTL
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('models/PLANETS MODELS/Earth/Earth.mtl', function (materials) {
+            materials.preload();
+
+            //Loading 3D Models - OBJ
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.load('models/PLANETS MODELS/Earth/Earth.obj', function (object) {
+                object.position.z -= -10500;
+                object.position.x -= 100;
+                scene.add(object);
+
+
+            });
+        });
+
+
+        //Fire Planet- Model
+        //Loading Material- MTL
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('models/PLANETS MODELS/FirePlanet/FirePlanet.mtl', function (materials) {
+            materials.preload();
+
+            //Loading 3D Models - OBJ
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.load('models/PLANETS MODELS/FirePlanet/FirePlanet.obj', function (object) {
+                object.position.z -= 4000;
+                object.position.x -= 5000;
+                object.position.y -= 500;
+                scene.add(object);
+
+
+
+            });
+
+        });
+
+        //Ice Planet- Model
+        //Loading Material- MTL
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('models/PLANETS MODELS/IcePlanet/IcePlanet.mtl', function (materials) {
+            materials.preload();
+
+            //Loading 3D Models - OBJ
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.load('models/PLANETS MODELS/IcePlanet/IcePlanet.obj', function (object) {
+
+                //object.position.z -= 4000;
+                //object.position.x -= 5000;
+                //object.position.y -= 500;
+                scene.add(object);
+
+            });
+
+        });
+
+        //Moon- Model
+        //Loading Material- MTL
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('models/PLANETS MODELS/Moon/Moon.mtl', function (materials) {
+            materials.preload();
+
+            //Loading 3D Models - OBJ
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.load('models/PLANETS MODELS/Moon/Moon.obj', function (object) {
+
+                object.position.z -= 3000;
+                //object.position.x -= 5000;
+                object.position.y += 500;
+                scene.add(object);
+
+            });
+
+        });
+        /*
+                //Moon- Model
+                //Loading Material- MTL
+                var mtlLoader = new THREE.MTLLoader();
+                mtlLoader.load('models/girlbody.mtl', function (materials) {
+                    materials.preload();
+        
+                    //Loading 3D Models - OBJ
+                    var objLoader = new THREE.OBJLoader();
+                    objLoader.setMaterials(materials);
+                    objLoader.load('models/girlbody.obj', function (object) {
+        
+                        //object.position.z -= 3000;
+                        //object.position.x -= 5000;
+                        //object.position.y += 500;
+                        scene.add(object);
+        
+                    });
+        
+                });
+        */
+
+
+
+
+        //Creating a skybox
+        const urls = [
+
+            'skybox (3)/back.png',
+            'skybox (3)/front.png',
+            'skybox (3)/bottom.png',
+            'skybox (3)/top.png',
+            'skybox (3)/right.png',
+            'skybox (3)/left.png'
+
+
+
+
+        ];
+
+        const materials = urls.map((url) => {
+            const texture = new THREE.TextureLoader().load(url);
+
+            return new THREE.MeshBasicMaterial({
+                map: texture,
+                side: THREE.BackSide,
+                //fog: false,
+                depthWrite: false,
+            });
+        });
+
+        const skybox = new THREE.Mesh(new THREE.BoxBufferGeometry(2000, 2000, 2000), materials);
+        scene.add(skybox);
+
+        skybox.rotation.y = Math.PI / 2;
+
+        //game logic
+
+        var update = function () {
+            skybox.rotation.x += 0.001;
+            skybox.rotation.y += 0.001;
+            skybox.rotation.z += 0.001;
+
+
+
+        };
+        // draw scene
+        var render = function () {
+            renderer.render(scene, camera);
+
+        };
+        // run game loop (update, render, repeat)
+        var GameLoop = function () {
+            requestAnimationFrame(GameLoop);
+            update();
+            render();
+        };
+
+        GameLoop();
+
+    </script>
+</body>
+
+</html>

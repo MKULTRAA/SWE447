@@ -1,0 +1,24 @@
+newmtl Mesh_0SG
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd SpaceShip_baseColor.jpeg
+Ni 1.00
+Ks 0.20 0.20 0.20
+Ns 23.00
+newmtl Mesh_3SG
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.25 0.25 0.25
+Ns 0.00
+newmtl sketchfab_final_3:kucing_mtl
+illum 4
+Kd 1.00 1.00 1.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd cat_diffuse.jpg
+Ni 1.00
