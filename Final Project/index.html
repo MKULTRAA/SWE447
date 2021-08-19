@@ -64,11 +64,9 @@
         //creating the shape
         var geometry = new THREE.BoxGeometry(1, 1, 1);
 
-        //create a material, color or image texture
-        // var material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: false });
-        //var cube = new THREE.Mesh(geometry, material);
-        //scene.add(cube);
 
+
+        //camera postion
         camera.position.z = 700;
 
 
@@ -90,16 +88,8 @@
 
         var hemisphereLight = new THREE.HemisphereLight(0xffffff, 0);
 
-        // scene.add(ambientLight)
-        //ambientLight.position.z -= 1000;
-        //scene.add(keyLight);
-        //scene.add(backLight);
-        //backLight.position.x -= 60;
 
         scene.add(hemisphereLight);
-
-        //scene.add(backLight2);
-
         scene.add(fillLight);
 
 
@@ -186,9 +176,6 @@
             objLoader.setMaterials(materials);
             objLoader.load('models/PLANETS MODELS/IcePlanet/IcePlanet.obj', function (object) {
 
-                //object.position.z -= 4000;
-                //object.position.x -= 5000;
-                //object.position.y -= 500;
                 scene.add(object);
 
             });
@@ -214,30 +201,6 @@
             });
 
         });
-        /*
-                //Moon- Model
-                //Loading Material- MTL
-                var mtlLoader = new THREE.MTLLoader();
-                mtlLoader.load('models/girlbody.mtl', function (materials) {
-                    materials.preload();
-        
-                    //Loading 3D Models - OBJ
-                    var objLoader = new THREE.OBJLoader();
-                    objLoader.setMaterials(materials);
-                    objLoader.load('models/girlbody.obj', function (object) {
-        
-                        //object.position.z -= 3000;
-                        //object.position.x -= 5000;
-                        //object.position.y += 500;
-                        scene.add(object);
-        
-                    });
-        
-                });
-        */
-
-
-
 
         //Creating a skybox
         const urls = [
@@ -248,8 +211,6 @@
             'skybox (3)/top.png',
             'skybox (3)/right.png',
             'skybox (3)/left.png'
-
-
 
 
         ];
